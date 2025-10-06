@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧农场管理系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9fc;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2e8b57, #3cb371);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #f0f8ff;
+            transform: translateY(-2px);
+        }
+        
+        .hero {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="400" viewBox="0 0 1600 400"><rect fill="%232e8b57" width="1600" height="400"/><text x="50%" y="50%" font-family="Arial" font-size="60" fill="white" text-anchor="middle" dominant-baseline="middle">智慧农场全景监控</text></svg>') center/cover no-repeat;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            max-width: 800px;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 5%;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: #2e8b57;
+            margin-bottom: 1rem;
+        }
+        
+        .data-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #3cb371;
+            margin: 1rem 0;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #76c7c0, #2e8b57);
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+        
+        footer {
+            background: #2e8b57;
+            color: white;
+            text-align: center;
+            padding: 2rem 5%;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h2>🌱智慧农场</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">实时监控</a></li>
+                <li><a href="#">数据分析</a></li>
+                <li><a href="#">设备管理</a></li>
+                <li><a href="#">关于我们</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>智能农业·绿色未来</h1>
+    </section>
+    
+    <section class="dashboard">
+        <div class="card">
+            <h3>土壤湿度</h3>
+            <div class="data-value">68%</div>
+            <div class="progress-bar">
+                <div class="progress" style="width: 68%"></div>
+            </div>
+            <p>当前湿度适宜作物生长</p>
+        </div>
+        
+        <div class="card">
+            <h3>环境温度</h3>
+            <div class="data-value">24℃</div>
+            <div class="progress-bar">
+                <div class="progress" style="width: 75%"></div>
+            </div>
+            <p>温度稳定在最佳区间</p>
+        </div>
+        
+        <div class="card">
+            <h3>光照强度</h3>
+            <div class="data-value">8500 lux</div>
+            <div class="progress-bar">
+                <div class="progress" style="width: 85%"></div>
+            </div>
+            <p>光照充足，作物光合作用良好</p>
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2025 智慧农场管理系统 | 科技创新助力农业发展</p>
+        <p>联系我们：contact@smartfarm.com | 400-123-4567</p>
+    </footer>
+    
+    <script>
+        // 模拟实时数据更新
+        function updateData() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const valueEl = card.querySelector('.data-value');
+                const progressBar = card.querySelector('.progress');
+                
+                // 随机生成新数据
+                let newValue;
+                if (valueEl.textContent.includes('%')) {
+                    newValue = Math.floor(Math.random() * 30) + 50;
+                    valueEl.textContent = newValue + '%';
+                    progressBar.style.width = newValue + '%';
+                } else if (valueEl.textContent.includes('℃')) {
+                    newValue = (Math.random() * 5) + 22;
+                    valueEl.textContent = newValue.toFixed(1) + '℃';
+                    progressBar.style.width = (newValue / 30 * 100) + '%';
+                } else {
+                    newValue = Math.floor(Math.random() * 4000) + 6000;
+                    valueEl.textContent = newValue + ' lux';
+                    progressBar.style.width = Math.min(100, (newValue / 10000 * 100)) + '%';
+                }
+            });
+        }
+        
+        // 每5秒更新一次数据
+        setInterval(updateData, 5000);
+        
+        // 初始加载更新
+        updateData();
+    </script>
+</body>
+</html>
