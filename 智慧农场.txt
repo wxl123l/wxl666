@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Farm Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9fc;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e7e34, #2b9348);
+            color: white;
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #f0f8ff;
+            transform: translateY(-2px);
+        }
+        
+        .hero {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="400" viewBox="0 0 1600 400"><rect fill="%231e7e34" width="1600" height="400"/><text x="50%" y="50%" font-family="Arial" font-size="60" fill="white" text-anchor="middle" dominant-baseline="middle">Smart Farm Panoramic Monitoring</text></svg>') center/cover no-repeat;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            max-width: 800px;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 5%;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: #1e7e34;
+            margin-bottom: 1rem;
+        }
+        
+        .data-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2b9348;
+            margin: 1rem 0;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #76c7c0, #1e7e34);
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+        
+        footer {
+            background: #1e7e34;
+            color: white;
+            text-align: center;
+            padding: 2rem 5%;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h2>🌱Smart Farm</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Real-time Monitoring</a></li>
+                <li><a href="#">Data Analytics</a></li>
+                <li><a href="#">Device Management</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>Smart Agriculture · Green Future</h1>
+    </section>
+    
+    <section class="dashboard">
+        <div class="card">
+            <h3>Soil Moisture</h3>
+            <div class="data-value">68%</div>
+            <div class="progress-bar">
+                <div class="progress" style="width: 68%"></div>
+            </div>
+            <p>Current moisture is optimal for crop growth</p>
+        </div>
+        
+        <div class="card">
+            <h3>Ambient Temperature</h3>
+            <div class="data-value">24℃</div>
+            <div class="progress-bar">
+                <div class="progress" style="width: 75%"></div>
+            </div>
+            <p>Temperature stable in optimal range</p>
+        </div>
+        
+        <div class="card">
+            <h3>Light Intensity</h3>
+            <div class="data-value">8500 lux</div>
+            <div class="progress-bar">
+                <div class="progress" style="width: 85%"></div>
+            </div>
+            <p>Adequate light for optimal photosynthesis</p>
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2025 Smart Farm Management System | Technology Innovation for Agricultural Development</p>
+        <p>Contact Us: contact@smartfarm.com | 400-123-4567</p>
+    </footer>
+    
+    <script>
+        function updateData() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const valueEl = card.querySelector('.data-value');
+                const progressBar = card.querySelector('.progress');
+                
+                let newValue;
+                if (valueEl.textContent.includes('%')) {
+                    newValue = Math.floor(Math.random() * 30) + 50;
+                    valueEl.textContent = newValue + '%';
+                    progressBar.style.width = newValue + '%';
+                } else if (valueEl.textContent.includes('℃')) {
+                    newValue = (Math.random() * 5) + 22;
+                    valueEl.textContent = newValue.toFixed(1) + '℃';
+                    progressBar.style.width = (newValue / 30 * 100) + '%';
+                } else {
+                    newValue = Math.floor(Math.random() * 4000) + 6000;
+                    valueEl.textContent = newValue + ' lux';
+                    progressBar.style.width = Math.min(100, (newValue / 10000 * 100)) + '%';
+                }
+            });
+        }
+        
+        setInterval(updateData, 5000);
+        updateData();
+    </script>
+</body>
+</html>
